@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class logic : MonoBehaviour
+//Integrantes del Equipo:
+//   Santiago Moreno Lacalle Quintero, A01663197 
+//   Rodrigo Rocha Rosales, A01784108
+
+public class logic 
 {
     public static List<bool> lines;
 
