@@ -63,5 +63,8 @@ public class Tablero : MonoBehaviour
                 CreateLinea(new Vector3(0.25f, 1, (dxy)), scaleV, Color.black);
             }
         }
+
+        logic.MakeMatriz();
+        logic.MakeGame();
     }
 }
