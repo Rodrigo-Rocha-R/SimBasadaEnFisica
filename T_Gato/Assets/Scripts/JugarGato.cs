@@ -13,6 +13,7 @@ public class Tablero : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     public Material material_piso;
+    public Material material_tablero;
 
     GameObject linea;
     GameObject Piso;
@@ -26,12 +27,19 @@ public class Tablero : MonoBehaviour
         Piso = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Piso.name = "Base";
         Piso.transform.position = new Vector3(0, 0, 0);
-        Piso.transform.localScale = new Vector3(15, 0.1f, 15);
+        Piso.transform.localScale = new Vector3(20, 0.1f, 20);
 
         //Equipar al objeto con MeshRenderer
 
         MeshRenderer mr = Piso.GetComponent<MeshRenderer>();
-        mr.material.color = new Color32(29, 140, 255,255);
+        //mr.material.color = new Color32(29, 140, 255,255);
+
+        Renderer ren = mr.gameObject.GetComponent<Renderer>();
+        ren.material = material_tablero;
+
+        Rigidbody rb = Piso.gameObject.AddComponent<Rigidbody>();
+        rb.mass = 100;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
     //Funcion para crear el ladrillo del gato.
     void CreateLinea(Vector3 pos, Vector3 scale, Color color)
@@ -46,10 +54,15 @@ public class Tablero : MonoBehaviour
 
         Rigidbody rigidbody = lin.gameObject.AddComponent<Rigidbody>(); 
         rigidbody.mass = 10;
+        rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
+        rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
 
         //Agregar material
         Renderer ren = lin.gameObject.GetComponent<Renderer>();
         ren.material = material_piso;
+
+     
+       
     }
 
 
@@ -69,7 +82,6 @@ public class Tablero : MonoBehaviour
             Figura_juego = Instantiate(player1);
 
         }
-        
 
         if(posicion_gato[fila][columna] == 1)
         {
