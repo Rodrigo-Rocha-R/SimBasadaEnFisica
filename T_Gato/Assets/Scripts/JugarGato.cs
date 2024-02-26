@@ -58,7 +58,7 @@ public class Tablero : MonoBehaviour
     void CrearObjeto(List<List<int>> posicion_gato, int fila, int columna)
     {
          
-        if (posicion_gato[fila][columna] == -1 || posicion_gato[fila][columna] == 1)
+        if (posicion_gato[fila][columna] == -1 )
         {
             return;
         }
@@ -69,14 +69,14 @@ public class Tablero : MonoBehaviour
             Figura_juego = Instantiate(player1);
 
         }
-        /*
+        
 
         if(posicion_gato[fila][columna] == 1)
         {
             //Cargar el prefab de jugador 2.
             Figura_juego = Instantiate(player2);
         }
-        */
+        
         //Dar el RigidBody y todo eso aqui 
 
         // La posicion de donde se va a tirar el objeto
@@ -104,7 +104,7 @@ public class Tablero : MonoBehaviour
         {
             if (columna == 0)
             {
-                Figura_juego.transform.position = new Vector3(2.3f, 5, 0);
+                Figura_juego.transform.position = new Vector3(-2.3f, 5, 0);
             }
 
             if (columna == 1)
@@ -114,7 +114,7 @@ public class Tablero : MonoBehaviour
 
             if (columna == 2)
             {
-                Figura_juego.transform.position = new Vector3(-2.3f, 5, 0);
+                Figura_juego.transform.position = new Vector3(2.3f, 5, 0);
             }
         }
 
