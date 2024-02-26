@@ -61,11 +61,7 @@ public class Tablero : MonoBehaviour
         Renderer ren = lin.gameObject.GetComponent<Renderer>();
         ren.material = material_piso;
 
-     
-       
     }
-
-
 
 
     void CrearObjeto(List<List<int>> posicion_gato, int fila, int columna)
@@ -88,8 +84,10 @@ public class Tablero : MonoBehaviour
             //Cargar el prefab de jugador 2.
             Figura_juego = Instantiate(player2);
         }
-        
+
         //Dar el RigidBody y todo eso aqui 
+        Rigidbody rigidbody = Figura_juego.gameObject.AddComponent<Rigidbody>();
+        rigidbody.mass = 4;
 
         // La posicion de donde se va a tirar el objeto
 
