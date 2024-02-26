@@ -54,17 +54,17 @@ public class Tablero : MonoBehaviour
 
             if (lugares[xy])
             {
-                //  l�nea horizontal
+                //  línea horizontal
                 CreateLinea(new Vector3((dxy), 0.25f, 0), scaleH, Color.black);
             }
             if (lugares[xy])
             {
-                //  l�nea vertical
+                //  línea vertical
                 CreateLinea(new Vector3(0.25f, 1, (dxy)), scaleV, Color.black);
             }
         }
 
         logic.MakeMatriz();
         logic.MakeGame();
-    }
+    }
 }
