@@ -13,6 +13,7 @@ public class Tablero : MonoBehaviour
     public GameObject player2;
     public Material material_piso;
     public Material material_tablero;
+    public PhysicMaterial Rebote;
 
     GameObject linea;
     GameObject Piso;
@@ -35,10 +36,14 @@ public class Tablero : MonoBehaviour
 
         Renderer ren = mr.gameObject.GetComponent<Renderer>();
         ren.material = material_tablero;
+        Collider col = Piso.gameObject.GetComponent<Collider>();
+        col.material = Rebote;
 
         Rigidbody rb = Piso.gameObject.AddComponent<Rigidbody>();
         rb.mass = 100;
         rb.constraints = RigidbodyConstraints.FreezeAll;
+
+
     }
     //Funcion para crear el ladrillo del gato.
     void CreateLinea(Vector3 pos, Vector3 scale, Color color)
@@ -60,6 +65,9 @@ public class Tablero : MonoBehaviour
         Renderer ren = lin.gameObject.GetComponent<Renderer>();
         ren.material = material_piso;
 
+        //Agregar Fisica
+        Collider col = linea.AddComponent<BoxCollider>(); 
+        col.material = Rebote; 
     }
 
 
