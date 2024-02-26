@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //Integrantes del Equipo:
@@ -67,11 +68,13 @@ public class logic
     //Funcion que hace que el juego se juega
     public static void MakeGame()
     {
+        //Generamos los turnos 
+        int turno = 0;
         //Decide que jugador va a ir primero
         turno_jugador = Random.Range(0, 2);
-
+        bool checarGanador = false;
         //La cantidad de turnos possibles para todo el juego 9 maximos turnos
-        for(int turno = 0; turno<= 8; turno++)
+        do
         {
             //Comprueba que todos las posiciones de la matriz tengan un valor diferente.
             do
@@ -88,33 +91,25 @@ public class logic
                     random_columa = Random.Range(0, 3);
                 } while (columna[random_columa] == 0);
             } while (matriz[random_fila][random_columa] != -1);
-            
 
-            
+
             //Actualiza el valor de la matriz por el jugador (1 o 0)
             matriz[random_fila][random_columa] = turno_jugador;
 
             //Elimina 1 valor possible de la variable fila y columna
-            
+
             fila[random_fila]--;
             columna[random_columa]--;
 
             //Hacemos que se compruebe en que turno del juego vamos, 
             //Para poder empezar a comprobar si hay un ganador 
             // Se hace desde el 5, ya que es donde empieza a poderse ganar.
+
             
-            if (turno >=5)
-            {
-                if (CheckWinner() == true)
-                {
-                    Debug.Log("Hubo Ganador");
-                    break;
-                }
-            }
 
             //Cambia al jugador, 1 y 1
 
-            if(turno_jugador == 1)
+            if (turno_jugador == 1)
             {
                 turno_jugador--;
             }
@@ -122,9 +117,21 @@ public class logic
             {
                 turno_jugador++;
             }
+
+            if (turno >= 4)
+            {
+                checarGanador = CheckWinner();
+                Debug.Log(checarGanador);
+            }
             
-        }
-        /* Quitar comentado, para probar lo que saca
+            if(checarGanador == true)
+            {
+                break;
+            }
+            turno++;
+        } while (turno < 9 );
+
+        // Quitar comentado, para probar lo que saca
         Debug.Log(matriz[0][0]);
         Debug.Log(matriz[0][1]);
         Debug.Log(matriz[0][2]);
@@ -134,29 +141,28 @@ public class logic
         Debug.Log(matriz[2][0]);
         Debug.Log(matriz[2][1]);
         Debug.Log(matriz[2][2]);
-        */
-        
+         
     }
 
     public static bool CheckWinner()
     {
         //Revisar diagonal
 
-        if (matriz[0][0] == matriz[1][1] && matriz[0][0] == matriz[2][2] | matriz[0][2] == matriz[1][1] && matriz[0][2] == matriz[2][0])
+        if (matriz[1][1] != -1 && (matriz[0][0] == matriz[1][1] && matriz[0][0] == matriz[2][2]  || matriz[0][2] == matriz[1][1] && matriz[0][2] == matriz[2][0] ))
         {
             return true;
         }
 
         //Revisar si gano vertical
 
-        if (matriz[0][0] == matriz[0][1] && matriz[0][0] == matriz[0][2] | matriz[1][0] == matriz[1][1] && matriz[1][0] == matriz[1][2] | matriz[2][0] == matriz[2][1] && matriz[2][0] == matriz[2][2])
+        if (matriz[0][0] == matriz[1][0] && matriz[0][0] == matriz[2][0] && matriz[0][0] != -1 || matriz[0][1] == matriz[1][1] && matriz[0][1] == matriz[2][1] && matriz[0][1] != -1 || matriz[0][2] == matriz[1][2] && matriz[0][2] == matriz[2][2] && matriz[0][2] != -1)
         {
             return true;
         }
 
         //Revisar si gano horizontal
 
-        if (matriz[0][0] == matriz[1][0] && matriz[0][0]  == matriz[2][0] | matriz[0][0] == matriz[1][0] && matriz[0][0] == matriz[2][0] | matriz[0][1] == matriz[1][1] && matriz[0][1] == matriz[2][1])
+        if (matriz[0][0] == matriz[0][1] && matriz[0][0] == matriz[0][2] && matriz[0][0] != -1 || matriz[1][0] == matriz[1][1] && matriz[1][0] == matriz[1][2] && matriz[1][0] != -1 || matriz[2][0] == matriz[2][1] && matriz[2][0] == matriz[2][2] && matriz[2][0] != -1)
         {
             return true;
         }
@@ -167,3 +173,4 @@ public class logic
 
     }
 }
+
