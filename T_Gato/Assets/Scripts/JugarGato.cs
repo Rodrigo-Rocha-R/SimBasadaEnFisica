@@ -9,12 +9,11 @@ using UnityEngine;
 
 public class Tablero : MonoBehaviour
 {
-<<<<<<< Updated upstream
-=======
+
     public GameObject player1;
     public GameObject player2;
     public Material material_piso;
->>>>>>> Stashed changes
+
     GameObject linea;
     GameObject Piso;
     GameObject Figura_juego;
@@ -53,14 +52,13 @@ public class Tablero : MonoBehaviour
         ren.material = material_piso;
     }
 
-<<<<<<< Updated upstream
-=======
+
 
 
     void CrearObjeto(List<List<int>> posicion_gato, int fila, int columna)
     {
          
-        if (posicion_gato[fila][columna] == -1)
+        if (posicion_gato[fila][columna] == -1 || posicion_gato[fila][columna] == 1)
         {
             return;
         }
@@ -71,12 +69,15 @@ public class Tablero : MonoBehaviour
             Figura_juego = Instantiate(player1);
 
         }
+        /*
 
         if(posicion_gato[fila][columna] == 1)
         {
             //Cargar el prefab de jugador 2.
             Figura_juego = Instantiate(player2);
         }
+        */
+        //Dar el RigidBody y todo eso aqui 
 
         // La posicion de donde se va a tirar el objeto
 
@@ -85,16 +86,17 @@ public class Tablero : MonoBehaviour
             if(columna == 0)
             {
                 //poner posicion
+                Figura_juego.transform.position = new Vector3(-2.4f,5,2.4f);
             }
             
             if(columna == 1)
             {
-
+                Figura_juego.transform.position = new Vector3(0, 5, 2.4f);
             }
 
             if(columna == 2)
             {
-
+                Figura_juego.transform.position = new Vector3(2.4f, 5, 2.4f);
             }
         }
 
@@ -102,17 +104,17 @@ public class Tablero : MonoBehaviour
         {
             if (columna == 0)
             {
-
+                Figura_juego.transform.position = new Vector3(2.3f, 5, 0);
             }
 
             if (columna == 1)
             {
-
+                Figura_juego.transform.position = new Vector3(0, 5, 0);
             }
 
             if (columna == 2)
             {
-
+                Figura_juego.transform.position = new Vector3(-2.3f, 5, 0);
             }
         }
 
@@ -120,23 +122,22 @@ public class Tablero : MonoBehaviour
         {
             if (columna == 0)
             {
-
+                Figura_juego.transform.position = new Vector3(-2.3f, 5, -2);
             }
 
             if (columna == 1)
             {
-
+                Figura_juego.transform.position = new Vector3(0, 5, -2);
             }
 
             if (columna == 2)
             {
-
+                Figura_juego.transform.position = new Vector3(2.3f,5,-2);
             }
         }
 
     }
 
->>>>>>> Stashed changes
     void Start()
     {
         
@@ -160,6 +161,18 @@ public class Tablero : MonoBehaviour
             {
                 //  línea vertical
                 CreateLinea(new Vector3(0.25f, 1, (dxy)), scaleV, Color.black);
+            }
+        }
+
+        logic.MakeMatriz();
+        logic.MakeGame();
+
+        List<List<int>> posicion = logic.matriz;
+        for (int fila = 0; fila <= 3; fila++)
+        {
+            for (int columna = 0; columna <= 3; columna++)
+            {
+                CrearObjeto(posicion, fila, columna);
             }
         }
     }
