@@ -10,6 +10,7 @@ using UnityEngine;
 public class Tablero : MonoBehaviour
 {
 
+
     public GameObject player1;
     public GameObject player2;
     public Material material_piso;
@@ -148,6 +149,82 @@ public class Tablero : MonoBehaviour
 
     }
 
+    void CrearObjeto(List<List<int>> posicion_gato, int fila, int columna)
+    {
+         
+        if (posicion_gato[fila][columna] == -1)
+        {
+            return;
+        }
+        
+        if(posicion_gato[fila][columna] == 0)
+        {
+            //Cargar la textura del jugador 1.
+        }
+
+        if(posicion_gato[fila][columna] == 1)
+        {
+            //Cargar el prefab de jugador 2.
+        }
+
+        // La posicion de donde se va a tirar el objeto
+
+        if (fila == 0)
+        {
+            if(columna == 0)
+            {
+                //poner posicion
+            }
+            
+            if(columna == 1)
+            {
+
+            }
+
+            if(columna == 2)
+            {
+
+            }
+        }
+
+        if(fila == 1)
+        {
+            if (columna == 0)
+            {
+
+            }
+
+            if (columna == 1)
+            {
+
+            }
+
+            if (columna == 2)
+            {
+
+            }
+        }
+
+        if(fila == 2)
+        {
+            if (columna == 0)
+            {
+
+            }
+
+            if (columna == 1)
+            {
+
+            }
+
+            if (columna == 2)
+            {
+
+            }
+        }
+
+    }
+
     void Start()
     {
         
@@ -164,12 +241,12 @@ public class Tablero : MonoBehaviour
 
             if (lugares[xy])
             {
-                //  l�nea horizontal
+                //  línea horizontal
                 CreateLinea(new Vector3((dxy), 0.25f, 0), scaleH, Color.black);
             }
             if (lugares[xy])
             {
-                //  l�nea vertical
+                //  línea vertical
                 CreateLinea(new Vector3(0.25f, 1, (dxy)), scaleV, Color.black);
             }
         }
@@ -178,12 +255,25 @@ public class Tablero : MonoBehaviour
         logic.MakeGame();
 
         List<List<int>> posicion = logic.matriz;
+
         for (int fila = 0; fila <= 3; fila++)
         {
             for (int columna = 0; columna <= 3; columna++)
+
+        for(int fila = 0; fila <=3; fila++)
+        {
+            for(int columna = 0; columna <= 3; columna++)
+
             {
                 CrearObjeto(posicion, fila, columna);
             }
         }
+
     }
+
+
+
+    }
+
 }
+
