@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class Tablero : MonoBehaviour
 {
+    
     GameObject linea;
     GameObject Piso;
 
@@ -36,6 +37,82 @@ public class Tablero : MonoBehaviour
         lin.material.color = color;
         Rigidbody rigidbody = lin.gameObject.AddComponent<Rigidbody>();
         rigidbody.mass = 10;
+    }
+
+    void CrearObjeto(List<List<int>> posicion_gato, int fila, int columna)
+    {
+         
+        if (posicion_gato[fila][columna] == -1)
+        {
+            return;
+        }
+        
+        if(posicion_gato[fila][columna] == 0)
+        {
+            //Cargar la textura del jugador 1.
+        }
+
+        if(posicion_gato[fila][columna] == 1)
+        {
+            //Cargar el prefab de jugador 2.
+        }
+
+        // La posicion de donde se va a tirar el objeto
+
+        if (fila == 0)
+        {
+            if(columna == 0)
+            {
+                //poner posicion
+            }
+            
+            if(columna == 1)
+            {
+
+            }
+
+            if(columna == 2)
+            {
+
+            }
+        }
+
+        if(fila == 1)
+        {
+            if (columna == 0)
+            {
+
+            }
+
+            if (columna == 1)
+            {
+
+            }
+
+            if (columna == 2)
+            {
+
+            }
+        }
+
+        if(fila == 2)
+        {
+            if (columna == 0)
+            {
+
+            }
+
+            if (columna == 1)
+            {
+
+            }
+
+            if (columna == 2)
+            {
+
+            }
+        }
+
     }
 
     void Start()
@@ -66,5 +143,17 @@ public class Tablero : MonoBehaviour
 
         logic.MakeMatriz();
         logic.MakeGame();
+
+        List<List<int>> posicion = logic.matriz;
+        for(int fila = 0; fila <=3; fila++)
+        {
+            for(int columna = 0; columna <= 3; columna++)
+            {
+                CrearObjeto(posicion, fila, columna);
+            }
+        }
+
+
     }
 }
+
