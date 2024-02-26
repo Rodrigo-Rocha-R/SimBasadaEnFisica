@@ -9,8 +9,6 @@ using UnityEngine;
 
 public class Tablero : MonoBehaviour
 {
-
-
     public GameObject player1;
     public GameObject player2;
     public Material material_piso;
@@ -149,88 +147,12 @@ public class Tablero : MonoBehaviour
 
     }
 
-    void CrearObjeto(List<List<int>> posicion_gato, int fila, int columna)
-    {
-         
-        if (posicion_gato[fila][columna] == -1)
-        {
-            return;
-        }
-        
-        if(posicion_gato[fila][columna] == 0)
-        {
-            //Cargar la textura del jugador 1.
-        }
-
-        if(posicion_gato[fila][columna] == 1)
-        {
-            //Cargar el prefab de jugador 2.
-        }
-
-        // La posicion de donde se va a tirar el objeto
-
-        if (fila == 0)
-        {
-            if(columna == 0)
-            {
-                //poner posicion
-            }
-            
-            if(columna == 1)
-            {
-
-            }
-
-            if(columna == 2)
-            {
-
-            }
-        }
-
-        if(fila == 1)
-        {
-            if (columna == 0)
-            {
-
-            }
-
-            if (columna == 1)
-            {
-
-            }
-
-            if (columna == 2)
-            {
-
-            }
-        }
-
-        if(fila == 2)
-        {
-            if (columna == 0)
-            {
-
-            }
-
-            if (columna == 1)
-            {
-
-            }
-
-            if (columna == 2)
-            {
-
-            }
-        }
-
-    }
-
     void Start()
     {
         
-        logic.MakeLines();
+        Logic.MakeLines();
 
-        List<bool> lugares = logic.lines;
+        List<bool> lugares = Logic.lines;
         CreatePiso();
 
         for (int xy = 0; xy < 13; xy++)
@@ -251,18 +173,14 @@ public class Tablero : MonoBehaviour
             }
         }
 
-        logic.MakeMatriz();
-        logic.MakeGame();
+        Logic.MakeMatriz();
+        Logic.MakeGame();
 
-        List<List<int>> posicion = logic.matriz;
+        List<List<int>> posicion = Logic.matriz;
 
         for (int fila = 0; fila <= 3; fila++)
         {
             for (int columna = 0; columna <= 3; columna++)
-
-        for(int fila = 0; fila <=3; fila++)
-        {
-            for(int columna = 0; columna <= 3; columna++)
 
             {
                 CrearObjeto(posicion, fila, columna);
@@ -270,10 +188,6 @@ public class Tablero : MonoBehaviour
         }
 
     }
-
-
-
-    }
 
 }
 
