@@ -9,8 +9,15 @@ using UnityEngine;
 
 public class Tablero : MonoBehaviour
 {
+<<<<<<< Updated upstream
+=======
+    public GameObject player1;
+    public GameObject player2;
+    public Material material_piso;
+>>>>>>> Stashed changes
     GameObject linea;
     GameObject Piso;
+    GameObject Figura_juego;
 
     // Funcion para crear el piso del Gato.
     void CreatePiso()
@@ -21,7 +28,9 @@ public class Tablero : MonoBehaviour
         Piso.name = "Base";
         Piso.transform.position = new Vector3(0, 0, 0);
         Piso.transform.localScale = new Vector3(15, 0.1f, 15);
+
         //Equipar al objeto con MeshRenderer
+
         MeshRenderer mr = Piso.GetComponent<MeshRenderer>();
         mr.material.color = new Color32(29, 140, 255,255);
     }
@@ -32,12 +41,102 @@ public class Tablero : MonoBehaviour
         linea.name = "linea";
         linea.transform.position = pos;
         linea.transform.localScale = scale;
+
         MeshRenderer lin = linea.GetComponent<MeshRenderer>();
-        lin.material.color = color;
-        Rigidbody rigidbody = lin.gameObject.AddComponent<Rigidbody>();
+        //lin.material.color = color;
+
+        Rigidbody rigidbody = lin.gameObject.AddComponent<Rigidbody>(); 
         rigidbody.mass = 10;
+
+        //Agregar material
+        Renderer ren = lin.gameObject.GetComponent<Renderer>();
+        ren.material = material_piso;
     }
 
+<<<<<<< Updated upstream
+=======
+
+
+    void CrearObjeto(List<List<int>> posicion_gato, int fila, int columna)
+    {
+         
+        if (posicion_gato[fila][columna] == -1)
+        {
+            return;
+        }
+        
+        if(posicion_gato[fila][columna] == 0)
+        {
+            //Cargar la textura del jugador 1.
+            Figura_juego = Instantiate(player1);
+
+        }
+
+        if(posicion_gato[fila][columna] == 1)
+        {
+            //Cargar el prefab de jugador 2.
+            Figura_juego = Instantiate(player2);
+        }
+
+        // La posicion de donde se va a tirar el objeto
+
+        if (fila == 0)
+        {
+            if(columna == 0)
+            {
+                //poner posicion
+            }
+            
+            if(columna == 1)
+            {
+
+            }
+
+            if(columna == 2)
+            {
+
+            }
+        }
+
+        if(fila == 1)
+        {
+            if (columna == 0)
+            {
+
+            }
+
+            if (columna == 1)
+            {
+
+            }
+
+            if (columna == 2)
+            {
+
+            }
+        }
+
+        if(fila == 2)
+        {
+            if (columna == 0)
+            {
+
+            }
+
+            if (columna == 1)
+            {
+
+            }
+
+            if (columna == 2)
+            {
+
+            }
+        }
+
+    }
+
+>>>>>>> Stashed changes
     void Start()
     {
         
