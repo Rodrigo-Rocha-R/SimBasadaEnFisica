@@ -66,7 +66,7 @@ public class Tablero : MonoBehaviour
         ren.material = material_piso;
 
         //Agregar Fisica
-        Collider col = linea.AddComponent<BoxCollider>(); 
+        Collider col = linea.GetComponent<BoxCollider>(); 
         col.material = Rebote; 
     }
 
@@ -94,7 +94,8 @@ public class Tablero : MonoBehaviour
 
         //Dar el RigidBody y todo eso aqui 
         Rigidbody rigidbody = Figura_juego.gameObject.AddComponent<Rigidbody>();
-        rigidbody.mass = 4;
+        rigidbody.mass = 6;
+
 
         // La posicion de donde se va a tirar el objeto
 
